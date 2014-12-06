@@ -2,6 +2,7 @@
 
 $display1 = 'hide';
 $display2 = 'hide';
+$tab = 1;
 
 // Evento salvar preferencias de uso
 if(isset($_POST['btnSavePreferences']) && $_POST['btnSavePreferences'] == 1){
@@ -26,7 +27,28 @@ if(isset($_POST['btnSavePreferences']) && $_POST['btnSavePreferences'] == 1){
 		$display1 = 'show'; $alert1 = 'success';
 	}
 
+	$tab = 1;
+
 } // fim do if
+
+
+// Evento alterar cartao principal
+if(isset($_POST['btnAlteraCartaoPrincipal']) && $_POST['btnAlteraCartaoPrincipal'] == 1){
+	
+	$cartao_principal = (int)$_POST['cartao_principal'];
+
+	// Update
+	$update = $conectar->prepare("UPDATE preferencias SET cartoes_id = ? WHERE usuarios_id = ? ");
+	$update->bind_param('ii', $cartao_principal, $usuarioID);
+	$update->execute();
+
+	if($update == true){
+		$msg2 = '<p><strong><i class="fa fa-check fa-fw"></i> Feito!</strong>. Cartão principal foi alterado com sucesso.</p>';
+		$display2 = 'show'; $alert2 = 'success';
+	}
+
+	$tab = 2;
+}
 
 
 // Busca as preferencias do usuario
@@ -46,6 +68,6 @@ $sqlCartoes = $conectar->prepare("
 $sqlCartoes->bind_param('i', $usuarioID);
 $sqlCartoes->execute();
 $sqlCartoes->store_result();
-$sqlCartoes->bind_result($id, $cartao, $codigo, $melhor_data, $data_vencimento, $limite, $ativo);
+$sqlCartoes->bind_result($id, $descricao, $codigo, $melhor_data, $data_vencimento, $limite, $ativo);
 
 ?>

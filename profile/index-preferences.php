@@ -46,17 +46,17 @@ include "../query/q-preferences.php";
 
 						<!-- Nav tabs -->
 						<ul class="nav nav-tabs" role="tablist">
-							<li class="active"><a href="#tab1" role="tab" data-toggle="tab">Preferências de uso</a></li>
-							<li><a href="#tab2" role="tab" data-toggle="tab">Cartão de crédito</a></li>
-							<li><a href="#tab3" role="tab" data-toggle="tab">Tipos de despesa</a></li>
-							<li><a href="#tab4" role="tab" data-toggle="tab">Formas de pagamento</a></li>
+							<li <?php if($tab == 1){ ?> class="active" <?php } ?>><a href="#tab1" role="tab" data-toggle="tab">Preferências de uso</a></li>
+							<li <?php if($tab == 2){ ?> class="active" <?php } ?>><a href="#tab2" role="tab" data-toggle="tab">Cartão de crédito</a></li>
+							<li <?php if($tab == 3){ ?> class="active" <?php } ?>><a href="#tab3" role="tab" data-toggle="tab">Tipos de despesa</a></li>
+							<li <?php if($tab == 4){ ?> class="active" <?php } ?>><a href="#tab4" role="tab" data-toggle="tab">Formas de pagamento</a></li>
 						</ul>
 
 						<!-- Tab panes -->
 						<div class="tab-content">
 							
 							<!-- tab1 -->
-							<div class="tab-pane fade in active" id="tab1">
+							<div <?php if($tab == 1){ ?> class="tab-pane fade in active" <?php }else{ ?> class="tab-pane fade" <?php } ?> id="tab1">
 								<div class="row">
 
 									<h2></h2>
@@ -105,17 +105,16 @@ include "../query/q-preferences.php";
 							</div> <!-- /.tab1 -->
 
 							<!-- tab2 -->
-							<div class="tab-pane fade" id="tab2">
+							<div <?php if($tab == 2){ ?> class="tab-pane fade in active" <?php }else{ ?> class="tab-pane fade" <?php } ?> id="tab2">
 								<div class="row">
 									
 									<h2></h2>
 
 									<div class="col-md-8">
 										
-										<div class="alert alert-success alert-dismissible <?php echo $display2 ?>" role="alert">
+										<div class="alert alert-<?php echo $alert2 ?> alert-dismissible <?php echo $display2 ?>" role="alert">
 											<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-											<span class="glyphicon glyphicon-ok"></span>
-											As informações foram salvas com sucesso!!!
+											<?php echo $msg2 ?>
 										</div>
 										
 
@@ -125,7 +124,7 @@ include "../query/q-preferences.php";
 										</div>
 
 										<div class="table-responsive">
-											<form method="post" action="preferencias.php" >
+											<form method="post" action="" >
 
 											<table class="table table-striped table-hover" >
 												<thead>
@@ -150,7 +149,7 @@ include "../query/q-preferences.php";
 														$limite = number_format($limite, 2, ',', '.');
 
 														// Ativo
-														if($ativo == 'S')
+														if($ativo == 1)
 															$ativo = 'Ativo';
 														else
 															$ativo = 'Inativo';
@@ -164,7 +163,7 @@ include "../query/q-preferences.php";
 														?>
 														<tr>
 															<td><?php echo $i ?></td>
-															<td><?php echo $cartao ?></td>
+															<td><?php echo $descricao ?></td>
 															<td class="text-center"><?php echo $prefixo . $codigo ?></td>
 															<td class="text-center"><?php echo $melhor_data ?></td>
 															<td class="text-center"><?php echo $data_vencimento ?></td>
@@ -172,10 +171,10 @@ include "../query/q-preferences.php";
 															<td class="text-center"><?php echo $ativo ?></td>
 															<td class="text-center"><input type="radio" name="cartao_principal" value="<?php echo $id ?>" <?php if($ativo == 'Inativo'){ ?> disabled <?php } ?> <?php if($cartao_principal == $id){ ?> checked <?php } ?> ></td>
 															<td>
-																<a href="?tab=2&l=<?php echo sha1('45') ?>&cartao=<?php echo $id ?>&action=edit" alt="Alterar informações" title="Alterar informações">
-																<button type="button" class="btn btn-default btn-xs">
-																	<span class="glyphicon glyphicon-pencil"></span>
-																</button>
+																<a href="">
+																	<button type="button" class="btn btn-default btn-xs">
+																		<i class="fa fa-edit fa-fw"></i>
+																	</button>
 																</a>
 															</td>
 														</tr>
@@ -186,7 +185,8 @@ include "../query/q-preferences.php";
 												</tbody>
 											</table>
 
-											<p class="pull-right"><button type="submit" class="btn btn-success" name="btnalteracartao" value="1"><span class="glyphicon glyphicon-star"></span> Alterar principal</button></p>
+											<p class="pull-right"><button type="submit" class="btn btn-success" name="btnAlteraCartaoPrincipal" value="1"><i class="fa fa-star fa-fw"></i> Alterar principal</button></p>
+											<p class="pull-left"><button type="submit" class="btn btn-primary" name="btnAlteraCartaoPrincipal" value="1"><i class="fa fa-credit-card fa-fw"></i> Novo cartão</button></p>
 
 											</form>
 
