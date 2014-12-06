@@ -33,7 +33,7 @@ $menu_active = explode("/", $_SERVER ['PHP_SELF']);
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Opções <span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
 						<li><a href="<?php echo $home ?>/profile/"><i class="fa fa-user fa-fw"></i> Meu perfil</a></li>
-						<li><a href="#"><i class="fa fa-pencil-square-o fa-fw"></i> Minhas preferências</a></li>
+						<li><a href="<?php echo $home ?>/profile/preferences/"><i class="fa fa-pencil-square-o fa-fw"></i> Minhas preferências</a></li>
 						<?php if($_SESSION['id'] == 1){ ?>
 						<li class="divider"></li>
 						<li><a href="<?php echo $home ?>/manager/users/"><i class="fa fa-users fa-fw"></i> Gerencias usuários</a></li>
