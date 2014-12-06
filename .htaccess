@@ -1,0 +1,54 @@
+#
+# Evitar que list os arquivos dos diretorios
+#
+
+Options -Indexes
+
+#
+# Diretorio base 
+#
+
+#RewriteBase /
+RewriteBase /financeiro/
+
+#
+# Custom 404 Error Page
+#
+
+#ErrorDocument 404 /404.php
+ErrorDocument 404 /financeiro/404.php
+
+#
+# URL amigavel
+#
+
+# Ativa
+Options +FollowSymLinks
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Regras
+RewriteRule ^index/?$ index.php [NC,L]
+RewriteRule ^profile/new/?$ profile/new_user.php [NC,L]
+
+RewriteRule ^home/?$ home.php [NC,L]
+
+RewriteRule ^receitas/?$ receitas.php [NC,L]
+
+RewriteRule ^despesas/?$ despesas.php [NC,L]
+RewriteRule ^despesas/([0-9]+)/([0-9]+)/?$ despesas.php?ano=$1&mes=$2 [NC,L]
+
+RewriteRule ^lancamentos/?$ lancamentos.php [NC,L]
+
+RewriteRule ^cartao-credito/?$ cartoes.php [NC,L]
+RewriteRule ^cartao-credito/([a-z0-9-]+)/([0-9]+)/([0-9]+)/?$ cartoes.php?slogan=$1&ano=$2&mes=$3 [NC,L]
+
+RewriteRule ^graficos/?$ graficos.php [NC,L]
+
+#
+# Menu de opções
+#
+RewriteRule ^profile/?$ profile/index-profile.php [NC,L]
+RewriteRule ^manager/users/?$ manager/manager-users.php [NC,L]
+
