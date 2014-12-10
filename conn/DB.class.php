@@ -9,6 +9,12 @@ class DB{
 		$pass = "123456";
 		$database = "financeiro";
 
+		// Hostgator
+		/*$host = "localhost";
+		$user = "atite621_finan";
+		$pass = "finan123";
+		$database = "atite621_financeiro";*/
+
 		// Conexao com o banco
 		$mysqli = new mysqli($host, $user, $pass, $database);
 

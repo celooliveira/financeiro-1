@@ -186,23 +186,80 @@ include "../query/q-preferences.php";
 											</table>
 
 											<p class="pull-right"><button type="submit" class="btn btn-success" name="btnAlteraCartaoPrincipal" value="1"><i class="fa fa-star fa-fw"></i> Alterar principal</button></p>
-											<p class="pull-left"><button type="submit" class="btn btn-primary" name="btnAlteraCartaoPrincipal" value="1"><i class="fa fa-credit-card fa-fw"></i> Novo cartão</button></p>
+											<p class="pull-left"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_popup"><i class="fa fa-credit-card fa-fw"></i> Novo cartão</button></p>
 
 											</form>
 
 										</div> <!-- /.table-responsive -->
-									
-									</div> <!-- /.col-md-8 -->										
 
+										<!-- Modal -->
+										<div class="modal fade" id="modal_popup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+											<div class="modal-dialog">
+												<div class="modal-content">
+
+													<div class="modal-header">
+														<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+														<h4 class="modal-title" id="myModalLabel">Adicionar novo cartão</h4>
+													</div> <!-- /.modal-header -->
+
+													<div class="modal-body">
+
+														<p>Entre com as informações abaixo:</p>
+
+														<form method="post" class="form-horizontal" role="form" action="<?php echo $home ?>/profile/index-preferences.php">
+															<div class="form-group">
+																<label class="col-md-3 control-label">Cartão</label>
+																<div class="col-md-6"> 
+																	<input type="text" name="cartao" class="form-control" placeholder="Ex: Caixa Federal, Santander" required >
+																</div>
+															</div>
+															<div class="form-group">
+																<label class="col-md-3 control-label">Número cartão</label>
+																<div class="col-md-6">
+																	<input type="text" name="codigo" id="codigo" class="form-control" maxlength="4" placeholder="Os 4 últimos digitos" required >
+																</div>
+															</div>
+															<div class="form-group">
+																<label class="col-md-3 control-label">Melhor data</label>
+																<div class="col-md-6">
+																	<input type="text" name="melhor_data" id="melhor_data" class="form-control" placeholder="Dia em que o cartão fecha" maxlength="2" required >
+																</div>
+															</div>
+															<div class="form-group">
+																<label class="col-md-3 control-label">Vencimento</label>
+																<div class="col-md-6">
+																	<input type="text" name="data_vencimento" id="data_vencimento" class="form-control" placeholder="Data do vencimento do cartão" maxlength="2" required >
+																</div>
+															</div>
+															<div class="form-group">
+																<label class="col-md-3 control-label">Limite</label>
+																<div class="col-md-6">
+																	<input type="text" name="limite" id="limite" class="form-control" placeholder="Limite disponível para o cartão" required >
+																</div>
+															</div>
+														</form>
+
+														<p class="text-info"><i class="fa fa-exclamation-circle fa-fw"></i> Essas informações serão utilizadas apenas como informativos e para cadastramentos de despesas realizados nos respectivos cartões.</p>
+
+													</div> <!-- /.modal-body -->
+
+													<div class="modal-footer">
+														<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times fa-fw"></i> Fechar</button>
+														<button type="submit" name="btnAddNovoCartao" value="1" class="btn btn-success"><i class="fa fa-plus fa-fw"></i> Adicionar</button>
+													</div> <!-- /.modal-footer -->
+
+												</div> <!-- /.modal-content -->
+											</div> <!-- /.modal-dialog -->
+										</div> <!-- /.modal -->
+									
+									</div> <!-- /.col-md-8 -->
                        			
 								</div> <!-- /.row -->
 							</div> <!-- /.tab2 -->
 
-						</div>
+						</div> <!--/.tab-contents -->
 
-					</div> <!-- /.col-md-4 -->
-
-					
+					</div> <!-- /.col-md-4 -->				
 
 				</div> <!-- /.row -->
 
@@ -222,17 +279,6 @@ include "../query/q-preferences.php";
 	    $(document).ready(function() {
 	        $('#dataTables-example').dataTable();
 	    });
-    </script>
-
-    <script type="text/javascript">
-		// jquery para chamar a modal
-		$("table").on('click',"#modal_popup", function(){
-			var id = $(this).attr('data-id'); // pega o id do botão
-			$.post('<?php echo $home ?>/profile/modal-localiza.php', {id: id}, function(retorno){
-				$("#modal_localiza").modal({ backdrop: 'static' });
-				$("#modal_corpo").html(retorno);
-			});
-		});
     </script>
 
 </body>

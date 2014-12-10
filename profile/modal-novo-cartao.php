@@ -1,0 +1,31 @@
+<?php
+
+// Inicia a sessão
+session_name('financeiro');
+session_start();
+
+// ID do usuario
+$usuarioID = $_SESSION['id'];
+
+// Includes
+include "../conn/DB.class.php";
+include "../includes/globais.php";
+include "../conn/check.php";
+
+// Fim - todas as páginas tem que ter o código acima
+
+
+?>
+
+<div class="modal-header">
+	<h4 class="modal-title text-success" id="myModalLabel">Localização do Usuário</h4>
+</div>
+
+<div class="modal-body">
+	<p>Essa é a sua localização mais próxima do seu último acesso ao sistema.</p>
+	
+</div> <!-- /.modal-body -->
+
+<div class="modal-footer">
+	<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times fa-fw"></i> Fechar</button>
+</div>

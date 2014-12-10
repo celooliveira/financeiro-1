@@ -48,7 +48,14 @@ if(isset($_POST['btnAlteraCartaoPrincipal']) && $_POST['btnAlteraCartaoPrincipal
 	}
 
 	$tab = 2;
-}
+} // fim do if
+
+// Evento add novo cartao
+if(isset($_POST['btnAddNovoCartao']) && $_POST['btnAddNovoCartao'] == 1){
+
+	echo $cartao = $_POST['cartao'];
+
+} // fim do if
 
 
 // Busca as preferencias do usuario
