@@ -97,7 +97,7 @@ include "query/q-lancamentos.php";
 							</select>
 						</div>
 						<div class="col-md-4">
-							<input type="text" class="form-control input-sm" name="total_parcela" id="total_parcela" maxlength="3" disabled placeholder="Num parcelas" >
+							<input type="text" class="form-control input-sm numeros" name="total_parcela" id="total_parcela" maxlength="3" disabled placeholder="Num parcelas" >
 						</div>
 					</div>
 
@@ -208,6 +208,7 @@ include "query/q-lancamentos.php";
 
 	<!-- Arquivos JS Maskaras -->
     <script src="<?php echo $home ?>/js/jquery.maskMoney.js"></script>
+    <script src="<?php echo $home ?>/js/numeros.js"></script>
 
 	<script type="text/javascript">
 

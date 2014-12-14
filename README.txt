@@ -17,3 +17,5 @@ O sistema teve inicio quando eu comecei a acompanhar minhas despesas pessoais us
 Esta versão esta sendo utlizada a linguagem MySQLi uma extensão do MySQL mais segura e robusta e com o banco de dados reformulado, ou seja, o banco foi feito novamente desde o começo sendo criadas views e relacionamentos de chaves estrangeiras que na primeira versão não tinha.
 
 Junto à essa versão estou utilizando o framework BootStrap 3.2
+
+Teste
