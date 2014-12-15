@@ -65,4 +65,12 @@ $sqlGraCartao->execute();
 $sqlGraCartao->store_result();
 $sqlGraCartao->bind_result($valor, $mes);
 
+// Busca nome do cartao principal
+$sqlNomeCartao = $conectar->prepare("SELECT descricao FROM cartoes WHERE id = ?");
+$sqlNomeCartao->bind_param('i', $cartao_principal);
+$sqlNomeCartao->execute();
+$sqlNomeCartao->store_result();
+$sqlNomeCartao->bind_result($descricao_cartao);
+$sqlNomeCartao->fetch();
+
 ?>

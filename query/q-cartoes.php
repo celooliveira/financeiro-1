@@ -72,7 +72,7 @@ $sqlCartoes->store_result();
 $sqlCartoes->bind_result($parcelas_id, $copag_id, $data_despesa, $data_vencimento, $descricao, $valor, $numero_parcela, $total_parcela, $parcelado);
 
 // Busca todos os cartões
-$sqlCartao = $conectar->prepare("SELECT id, descricao, slogan FROM cartoes WHERE usuarios_id = ? AND ativo = 1 ORDER BY descricao ");
+$sqlCartao = $conectar->prepare("SELECT id, descricao, slogan FROM cartoes WHERE usuarios_id = ? ORDER BY descricao ");
 $sqlCartao->bind_param('i', $usuarioID);
 $sqlCartao->execute();
 $sqlCartao->store_result();

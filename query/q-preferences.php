@@ -112,6 +112,7 @@ if(isset($_POST['btnEditCartao']) && $_POST['btnEditCartao'] == 1){
 	$melhor_data = (int)$_POST['melhor_data'];
 	$data_vencimento = (int)$_POST['data_vencimento'];
 	$limite = $_POST['limite'];
+	$ativo = (int)$_POST['ativo'];
 
 	// Limite
 	$source = array('.', ','); 
@@ -130,9 +131,9 @@ if(isset($_POST['btnEditCartao']) && $_POST['btnEditCartao'] == 1){
 	$update = $conectar->prepare("
 		UPDATE cartoes
 		SET descricao = ?, slogan = ?, codigo = ?,
-		melhor_data = ?, data_vencimento = ?, limite = ?
+		melhor_data = ?, data_vencimento = ?, limite = ?, ativo = ?
 		WHERE id = ? AND usuarios_id = ?" );
-	$update->bind_param('ssiiiiii', $cartao, $slogan, $codigo, $melhor_data, $data_vencimento, $limite, $cartoes_id, $usuarioID);
+	$update->bind_param('ssiiiiiii', $cartao, $slogan, $codigo, $melhor_data, $data_vencimento, $limite, $ativo, $cartoes_id, $usuarioID);
 	$update->execute();
 
 	if($update == true){

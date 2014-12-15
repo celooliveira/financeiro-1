@@ -65,13 +65,13 @@ include "../query/q-manager-users.php";
 												<thead>
 													<tr>
 														<th width="2">#</th>
-														<th></th>
 														<th>Nome</th>
 														<th>Email</th>
 														<th>Login</th>
 														<th>Nivel</th>
 														<th>Acesso</th>
 														<th>Ultimo acesso</th>
+														<th>Status</th>
 													</tr>
 												</thead>
 												<tbody>
@@ -93,8 +93,8 @@ include "../query/q-manager-users.php";
 
 														// Bloqueado
 														if($bloqueado == 'S'){
-															$bloqueado = "<i class='fa fa-ban fa-fw'></i>";
-															$str = 'bg-danger';
+															$bloqueado = '- Bloqueado';
+															$str = 'info';
 														}
 														else{
 															$bloqueado = ' ';
@@ -103,22 +103,22 @@ include "../query/q-manager-users.php";
 
 														// Status
 														if($status == 1)
-															$status = "<i class='fa fa-check fa-fw'></i>";
+															$status = 'Ativo';
 														else
-															$status = "<i class='fa fa-times fa-fw'></i>";
+															$status = 'Inativo';
 
 														?>
 														<tr class="<?php echo $str ?>">
 															<td><?php echo $i ?></td>
-															<td class="text-right">
-																<?php echo $bloqueado . " " . $status ?>
-															</td>
 															<td><?php echo $nome ?></td>											
 															<td><?php echo $email ?></td>
 															<td><?php echo $login ?></td>
 															<td><?php echo $nivel ?></td>
 															<td><?php echo $numero_acesso ?></td>
 															<td><?php echo $acesso_atual ?></td>
+															<td>
+																<?php echo $status . " " . $bloqueado ?>
+															</td>
 														</tr>
 														<?php
 														$i++;

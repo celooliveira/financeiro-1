@@ -75,6 +75,15 @@ $limite = number_format($limite, 2, ',', '.');
 					<input type="text" name="limite" id="limite" class="form-control" value="<?php echo $limite ?>" required >
 				</div>
 			</div>
+			<div class="form-group">
+				<label class="col-md-3 control-label">Status</label>
+				<div class="col-md-6">
+					<select name="ativo" class="form-control">
+						<option value="1" <?php if($ativo == 1){ ?> selected <?php } ?> >Ativo</option>
+						<option value="0" <?php if($ativo == 0){ ?> selected <?php } ?> >Inativo</option>
+					</select>
+				</div>
+			</div>
 
 		<p class="text-info"><i class="fa fa-exclamation-circle fa-fw"></i> Essas informações serão utilizadas apenas como informativos e para cadastramentos de despesas realizados nos respectivos cartões.</p>
 

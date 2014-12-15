@@ -229,7 +229,7 @@ $convert_mes_abr = new MesesAbr;
 					<div role="tabpanel" class="tab-pane active" id="tab3">
 
 						<p></p>
-						<p>Cartão de crédito - Caixa Federal</p>
+						<p>Cartão de crédito - <?php echo $descricao_cartao ?></p>
 						<div id="morris-bar-chart1"></div>
 
 					</div> <!-- /.tab3 -->
