@@ -53,3 +53,10 @@ RewriteRule ^profile/?$ profile/index-profile.php [NC,L]
 RewriteRule ^profile/preferences/?$ profile/index-preferences.php [NC,L]
 RewriteRule ^manager/users/?$ manager/manager-users.php [NC,L]
 
+#
+# Msg de acesso ao sistema - usuarios/senhas incorretos
+#
+RewriteRule ^login/?$ login.php [NC,L]
+RewriteRule ^login/([0-9]+)/?$ login.php?error=$1 [NC,L]
+
+

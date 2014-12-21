@@ -113,14 +113,14 @@ $convert_mes = new Meses;
 
 				<!-- Nav tabs -->
 				<ul class="nav nav-tabs" role="tablist">
-					<li role="presentation" class="active"><a href="#tab1" role="tab" data-toggle="tab"><i class="fa fa-bar-chart fa-fw"></i> Gráfico</a></li>
-					<li role="presentation"><a href="#tab2" role="tab" data-toggle="tab"><i class="fa fa-list-ul fa-fw"></i>  Detalhes</a></li>
+					<li <?php if($tab == 1){ ?> class="active" <?php } ?> ><a href="#tab1" role="tab" data-toggle="tab"><i class="fa fa-bar-chart fa-fw"></i> Gráfico</a></li>
+					<li <?php if($tab == 2){ ?> class="active" <?php } ?> ><a href="#tab2" role="tab" data-toggle="tab"><i class="fa fa-list-ul fa-fw"></i>  Detalhes</a></li>
 				</ul>
 
 				<!-- Tab panes -->
 				<div class="tab-content">
 					<!-- TAB 1 -->
-					<div role="tabpanel" class="tab-pane active" id="tab1">
+					<div <?php if($tab == 1){ ?> class="tab-pane fade in active" <?php }else{ ?> class="tab-pane fade" <?php } ?> id="tab1">
 
 						<h4 class="text-center text-muted">Últimas receitas</h4>
 						<div id="morris-bar-chart1"></div>
@@ -128,13 +128,13 @@ $convert_mes = new Meses;
 					</div> <!-- /.tab1 -->
 
 					<!-- TAB 2 -->
-					<div role="tabpanel" class="tab-pane" id="tab2">
+					<div <?php if($tab == 2){ ?> class="tab-pane fade in active" <?php }else{ ?> class="tab-pane fade" <?php } ?> id="tab2">
 
 						<h4 class="text-muted">Visualizando detalhes das últimas receitas</h4>
 
 						<div class="table-responsive">
 
-							<table class="table table-striped table-condensed table-hover">
+							<table class="table table-striped table-hover">
 								<thead>
 									<tr>
 										<th>#</th>
@@ -161,9 +161,8 @@ $convert_mes = new Meses;
 											<td><?php echo $ano ?></td>
 											<td><?php echo $valor_exibe ?></td>
 											<td class="text-center">
-												<a class="btn btn-default btn-xs" id="modal_popup" data-id="<?php echo $parcelas_id."-".'1' ?>" title="Editar registro" alt="Editar registro"><i class="fa fa-pencil fa-fw"></i></a>
-												<a class="btn btn-default btn-xs" id="modal_popup" data-id="<?php echo $parcelas_id."-".'2' ?>" title="Visualizar registro" alt="Visualizar registro"><i class="fa fa-list-alt fa-fw"></i></a>
-												<a class="btn btn-default btn-xs" id="modal_popup" data-id="<?php echo $parcelas_id."-".'3' ?>" title="Remover registro" alt="Remover registro"><i class="fa fa-trash fa-fw"></i></a>
+												<a class="btn btn-default btn-xs" id="modal_popup" data-id="<?php echo $receita_id."-".'1' ?>" title="Editar registro" alt="Editar registro"><i class="fa fa-pencil fa-fw"></i></a>
+												<a class="btn btn-default btn-xs" id="modal_popup" data-id="<?php echo $receita_id."-".'2' ?>" title="Visualizar registro" alt="Visualizar registro"><i class="fa fa-list-alt fa-fw"></i></a>
 											</td>
 										</tr>
 
@@ -174,6 +173,14 @@ $convert_mes = new Meses;
 									?>
 								</tbody>
 							</table>
+
+							<!-- Modal -->
+							<div class="modal fade" id="modal_receitas" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content" id="modal_corpo">
+									</div>
+								</div>
+							</div>
 
 						</div> <!-- /.table-responsive -->
 
@@ -238,6 +245,15 @@ $convert_mes = new Meses;
             hideHover: 'auto',
             resize: true
         });
+
+        // jquery para chamar a modal
+		$("table").on('click',"#modal_popup", function(){
+			var id = $(this).attr('data-id'); // pega o id do botão
+			$.post('<?php echo $home ?>/modal-receitas.php', {id: id}, function(retorno){
+				$("#modal_receitas").modal({ backdrop: 'static' });
+				$("#modal_corpo").html(retorno);
+			});
+		});
 
     </script>
 

@@ -31,12 +31,12 @@ class Login{
 			$sql->execute();
 
 			// Senha / usuario incorretos
-			header("Location:../senha_incorreta"); exit;
+			header("Location:../login/0"); exit;
 
 		} else{
 			// Usuario bloqueado
 			if($bloqueado == "S"){
-				header("Location:../usuario_bloqueado"); exit;
+				header("Location:../login/1"); exit;
 			} else{
 
 				// Usuario ativo no sistema
@@ -90,7 +90,7 @@ class Login{
 				} // fim do if status
 				else{
 					// Usuario inativo no sistema
-					header("Location:../inativo"); exit;
+					header("Location:../login/3"); exit;
 				}
 
 

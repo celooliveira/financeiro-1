@@ -229,16 +229,44 @@ $convert_mes_abr = new MesesAbr;
 					<div role="tabpanel" class="tab-pane active" id="tab3">
 
 						<p></p>
-						<p>Cartão de crédito - <?php echo $descricao_cartao ?></p>
+						<?php
+						if($sqlGraCartao->num_rows() == 0){
+							?>
+							<p class="text-danger page-header">Não há despesas de cartões para exibir no momento.</p>
+							<?php
+						} // fim do if
+						else{
+						?>
+							<p class="pull-left">Cartão de crédito - <?php echo $descricao_cartao ?></p>
+							<?php
+						} // fim do else
+						?>
+
 						<div id="morris-bar-chart1"></div>
+
+						<div id="morris-bar-chart2"></div>
 
 					</div> <!-- /.tab3 -->
 
 					<!-- TAB 4 -->
 					<div role="tabpanel" class="tab-pane" id="tab4">
+
+						<p></p>
+						<p>Despesas 2014</p>
 						
+						<div id="morris-bar-chart2"></div>
 					
 					</div> <!-- /.tab4 -->
+
+					<!-- TAB 5 -->
+					<div role="tabpanel" class="tab-pane" id="tab5">
+
+						<p></p>
+						<p>Despesas 2014</p>
+						
+						<div id="morris-bar-chart2"></div>
+					
+					</div> <!-- /.tab5 -->
 
 				</div> <!-- /.tab-content -->
 
@@ -280,6 +308,29 @@ $convert_mes_abr = new MesesAbr;
             resize: true
         });
 
+        Morris.Bar({
+            element: 'morris-bar-chart2',
+            data: [
+
+                <?php
+                while($sqlGraDespesa->fetch()){
+                    ?>
+                    {
+                        y: '<?php echo $convert_mes_abr->convert_mes_abr($mes) ?>',
+                        a: <?php echo $valor ?>
+                    }, 
+                    <?php
+                } // fim do while
+                ?>
+            ],
+
+            xkey: 'y',
+            ykeys: ['a'],
+            labels: ['Valor'],
+            hideHover: 'auto',
+            resize: true
+        });
+
 		// jquery para chamar a modal
 		$("table").on('click',"#modal_popup", function(){
 			var id = $(this).attr('data-id'); // pega o id do botão
@@ -288,6 +339,16 @@ $convert_mes_abr = new MesesAbr;
 				$("#modal_corpo").html(retorno);
 			});
 		});
+
+		function div_grafico(){
+			var id_grafico = $('#id_grafico').val();
+			if(id_grafico){
+				var url = '<?php echo $home ?>/graficos-home.php?id_grafico='+id_grafico;
+				$.get(url, function(dataReturn) {
+					$('#morris-bar-chart1').html(dataReturn);
+				});
+			}
+		}
 
     </script>
 
