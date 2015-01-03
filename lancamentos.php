@@ -104,7 +104,7 @@ include "query/q-lancamentos.php";
 					<div class="form-group">
 						<label class="col-md-3 control-label">* Descrição</label>
 						<div class="col-md-4">
-							<input type="email" class="form-control input-sm" name="descricao" required >
+							<input type="text" class="form-control input-sm" name="descricao" required >
 						</div>
 					</div>
 
@@ -208,13 +208,9 @@ include "query/q-lancamentos.php";
 
 	<!-- Arquivos JS Maskaras -->
     <script src="<?php echo $home ?>/js/jquery.maskMoney.js"></script>
-    <!--<script src="<?php echo $home ?>/js/numeros.js"></script>-->
-    <script src="<?php echo $home ?>/js/jqBootstrapValidation.js"></script>
+    <script src="<?php echo $home ?>/js/numeros.js"></script>
 
 	<script type="text/javascript">
-	
-		// Validação Forms - bootstrap
-		$(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
 
 		// Datas - Datepicker
         $(document).ready(function () {

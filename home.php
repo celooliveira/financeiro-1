@@ -214,61 +214,17 @@ $convert_mes_abr = new MesesAbr;
 			</div> <!-- /.col-md-6 -->
 
 			<div class="col-md-6">
-				<h4 class="text-muted">Estatísticas e Gráficos</h4>
+				<h4 class="text-muted">Gráficos e Estatísticas</h4>
 
-				<!-- Nav tabs -->
-				<ul class="nav nav-tabs" role="tablist">
-					<li role="presentation" class="active"><a href="#tab3" role="tab" data-toggle="tab"><i class="fa fa-list-alt fa-fw"></i> Cartões de Crédito</a></li>
-					<li role="presentation"><a href="#tab4" role="tab" data-toggle="tab"><i class="fa fa-credit-card fa-fw"></i>  Despesas</a></li>
-					<li role="presentation"><a href="#tab5" role="tab" data-toggle="tab"><i class="fa fa-credit-card fa-fw"></i>  Tipo de Despesas</a></li>
-				</ul>
+				<p></p><hr>
+				<h4>Cartão de crédito - <?php echo "$descricao_cartao $ano" ?></h4>
+				<div id="morris-bar-chart1"></div>
 
-				<!-- Tab panes -->
-				<div class="tab-content">
-					<!-- TAB 3 -->
-					<div role="tabpanel" class="tab-pane active" id="tab3">
+				<h4>Despesa Mensal - <?php echo $ano ?></h4>
+				<div id="morris-bar-chart2"></div>
 
-						<p></p>
-						<?php
-						if($sqlGraCartao->num_rows() == 0){
-							?>
-							<p class="text-danger page-header">Não há despesas de cartões para exibir no momento.</p>
-							<?php
-						} // fim do if
-						else{
-						?>
-							<p class="pull-left">Cartão de crédito - <?php echo $descricao_cartao ?></p>
-							<?php
-						} // fim do else
-						?>
+				<p class="text-right"><a href="<?php echo $home ?>/graficos/"><i class="fa fa-level-up fa-fw"></i> Ver mais gráficos</a></p>
 
-						<div id="morris-bar-chart1"></div>
-
-						<div id="morris-bar-chart2"></div>
-
-					</div> <!-- /.tab3 -->
-
-					<!-- TAB 4 -->
-					<div role="tabpanel" class="tab-pane" id="tab4">
-
-						<p></p>
-						<p>Despesas 2014</p>
-						
-						<div id="morris-bar-chart2"></div>
-					
-					</div> <!-- /.tab4 -->
-
-					<!-- TAB 5 -->
-					<div role="tabpanel" class="tab-pane" id="tab5">
-
-						<p></p>
-						<p>Despesas 2014</p>
-						
-						<div id="morris-bar-chart2"></div>
-					
-					</div> <!-- /.tab5 -->
-
-				</div> <!-- /.tab-content -->
 
 			</div> <!-- /.col-md-6 -->
 
@@ -339,16 +295,6 @@ $convert_mes_abr = new MesesAbr;
 				$("#modal_corpo").html(retorno);
 			});
 		});
-
-		function div_grafico(){
-			var id_grafico = $('#id_grafico').val();
-			if(id_grafico){
-				var url = '<?php echo $home ?>/graficos-home.php?id_grafico='+id_grafico;
-				$.get(url, function(dataReturn) {
-					$('#morris-bar-chart1').html(dataReturn);
-				});
-			}
-		}
 
     </script>
 

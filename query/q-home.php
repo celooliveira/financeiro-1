@@ -52,21 +52,6 @@ $sqlCartoes->execute();
 $sqlCartoes->store_result();
 $sqlCartoes->bind_result($data_vencimento, $data_pagamento, $valor, $conta_paga, $cartoes_id, $slogan, $desc_cartao);
 
-// Busca nome do cartao principal
-$sqlNomeCartao = $conectar->prepare("SELECT descricao FROM cartoes WHERE id = ?");
-$sqlNomeCartao->bind_param('i', $cartao_principal);
-$sqlNomeCartao->execute();
-$sqlNomeCartao->store_result();
-$sqlNomeCartao->bind_result($descricao_cartao);
-$sqlNomeCartao->fetch();
-
-// Busca todos os cartões
-$sqlCartao = $conectar->prepare("SELECT id, descricao FROM cartoes WHERE usuarios_id = ? ORDER BY descricao ");
-$sqlCartao->bind_param('i', $usuarioID);
-$sqlCartao->execute();
-$sqlCartao->store_result();
-$sqlCartao->bind_result($id, $descricao);
-
 // Busca dados para o grafico - cartao de credito
 $sqlGraCartao = $conectar->prepare("
 	SELECT SUM(valor) as valor, mes
@@ -91,5 +76,13 @@ $sqlGraDespesa->bind_param('ii', $ano, $usuarioID);
 $sqlGraDespesa->execute();
 $sqlGraDespesa->store_result();
 $sqlGraDespesa->bind_result($valor, $mes);
+
+// Busca nome do cartao principal
+$sqlNomeCartao = $conectar->prepare("SELECT descricao FROM cartoes WHERE id = ?");
+$sqlNomeCartao->bind_param('i', $cartao_principal);
+$sqlNomeCartao->execute();
+$sqlNomeCartao->store_result();
+$sqlNomeCartao->bind_result($descricao_cartao);
+$sqlNomeCartao->fetch();
 
 ?>

@@ -46,14 +46,14 @@ $convert_mes_abr = new MesesAbr;
 		<div class="row">
 			<div class="col-md-6">
 				
-				<h4>Cartão de crédito - Caixa federal 2014</h4>
+				<h4>Cartão de crédito - Caixa federal <?php echo $ano ?></h4>
 				<div id="morris-bar-chart1"></div>
 
 			</div>
 
 			<div class="col-md-6">
 				
-				<h4>Despesas - 2014</h4>
+				<h4>Despesa Mensal - <?php echo $ano ?></h4>
 
 				<div id="morris-bar-chart2"></div>
 
